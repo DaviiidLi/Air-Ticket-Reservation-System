@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Ticket Reservation System|Purchase</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--setting for the margin-->
+    <style>
+    .margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 150px;
+    margin-left: 150px;
+    }
+    </style>
+
+    <!--format for the title line-->
+    <style>
+    .myDiv {
+    background-color: while;
+    text-align: center;
+    }
+    </style>
+
+    <!--    format for navigation bar-->
+    <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+    </style>
+
+<!--    format for dropdown box-->
+    <style>
+    .dropdown {
+      float: right;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: Times New Roman;
+      margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: white;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      font-family: Times New Roman;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    </style>
+
+    <!--initialize table form-->
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<!--    style for pop-up form and content in the form-->
+    <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(128,128,128,0.5);
+      display: none;
+      z-index: 99;
+    }
+
+    .form-popup {
+      background-color: #ffffff;
+      width: 420px;
+      padding: 20px 0px;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 40%;
+      font-family: "Poppins",sans-serif;
+      border: 3px solid #f1f1f1;
+    }
+
+    .form-container {
+      max-width: 300px;
+      margin: 0px auto;
+      text-align: center;
+      background-color: white;
+    }
+    </style>
+
+<!--    condition for triggering the form-->
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    function successinfoopenForm() {
+      document.getElementById("successinfoForm").style.display = "block";
+    }
+
+    function successinfocloseForm() {
+      document.getElementById("successinfoForm").style.display = "none";
+    }
+    </script>
+
+<!--    rollback-->
+    <script>
+    function goPrev()
+    {
+    window.history.back();
+    }
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    .mainform {border: 3px solid #f1f1f1;}
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    img.avatar {
+      width: 40%;
+      border-radius: 50%;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+      .cancelbtn {
+         width: 100%;
+      }
+    }
+    </style>
+
+</head>
+<body>
+    <div class="margin">
+        <!--title line with login and register-->
+        <div class="myDiv">
+            <br>
+            <h1 style="font-family:Times New Roman; font-size:35px"><div style="float: left">Air Ticket Reservation System</div></h1>
+            <div class="dropdown">
+                <button class="dropbtn">Hi, {{username}}
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="http://127.0.0.1:5000/action_center_my_flights">Action Center</a>
+                  <a style="cursor: pointer" onclick="openForm()">Logout</a>
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+            <br>
+        </div>
+
+        <ul>
+          <li style="font-family: sans-serif"><a href="http://127.0.0.1:5000/">Home</a></li>
+          <li style="font-family: sans-serif"><a href="#news">News</a></li>
+          <li style="font-family: sans-serif"><a href="#contact">Contact</a></li>
+          <li style="float:right; font-family: sans-serif"><a href="#about">About</a></li>
+        </ul>
+
+        {% if error %}
+            <h1>{{ error }}</h1>
+        {% else %}
+            <div class="mainform">
+                <form action="/complete_purchase" method="post">
+
+                  <div class="container">
+
+                    <h2>Chosen Flight</h2>
+
+                    <table>
+                      <tr>
+                        <th>Airline Name</th>
+                        <th>Flight Number</th>
+                        <th>Airplane ID</th>
+                        <th>Departure Airport</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Airport</th>
+                        <th>Arrival Time</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                      </tr>
+
+                      <tr>
+                        <td>{{ chosen_flight.airline_name }}</td>
+                        <td>{{ chosen_flight.flight_num }}</td>
+                        <td>{{ chosen_flight.airplane_id }}</td>
+                        <td>{{ chosen_flight.departure_airport }}</td>
+                        <td>{{ chosen_flight.departure_time }}</td>
+                        <td>{{ chosen_flight.arrival_airport }}</td>
+                        <td>{{ chosen_flight.arrival_time }}</td>
+                        <td>{{ chosen_flight.price }}</td>
+                        <td>{{ chosen_flight.status }}</td>
+                    </tr>
+                    </table>
+                    <br>
+
+                    {% if tickets %}
+                        <label><b> Choose a ticket to purchase </b></label> <br>
+                            <select name="ticket">
+                                {% for ticket in tickets %}
+                                <option value="{{ticket.ticket_id}}">{{ticket.ticket_id}}</option>
+                                {% endfor %}
+                            </select>
+                        <br><br>
+
+                        <label><b> Choose a customer to purchase for </b></label> <br>
+                            <select name="customer">
+                                {% for customer in customers %}
+                                <option value="{{customer}}">{{customer}}</option>
+                                {% endfor %}
+                            </select>
+                        <br><br>
+
+                        <button type="button" onclick="successinfoopenForm()">Purchase</button>
+                    {% else %}
+                        <h2>Tickets are sold out.</h2>
+                    {% endif %}
+
+                  </div>
+
+                  <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" class="cancelbtn" onclick="goPrev()">Cancel</button>
+                  </div>
+
+                  <div class="overlay" id="successinfoForm">
+                      <div class="form-popup">
+                          <div class="form-container">
+                          <p>Successfully purchased!</p>
+                          <button type="submit" onclick="successinfocloseForm()">Continue</button>
+                          </div>
+                      </div>
+                  </div>
+
+                </form>
+            </div>
+        {% endif %}
+
+        <div class="overlay" id="myForm">
+            <div class="form-popup">
+                <form action="/logout" class="form-container">
+                <p style="text-align: center;">Goodbye!</p>
+                <button type="submit" class="btn cancel" onclick="closeForm()">Continue</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

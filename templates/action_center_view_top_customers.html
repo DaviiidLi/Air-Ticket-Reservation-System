@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Ticket Reservation System|Home</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--setting for the margin-->
+    <style>
+    .margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 150px;
+    margin-left: 150px;
+    }
+    </style>
+
+    <!--format for the title line-->
+    <style>
+    .myDiv {
+    background-color: while;
+    text-align: center;
+    }
+    </style>
+
+<!--    format for navigation bar-->
+    <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+    </style>
+
+<!--    format for dropdown box-->
+    <style>
+    .dropdown {
+      float: right;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: Times New Roman;
+      margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: white;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    </style>
+
+<!--    style for pop-up form and content in the form-->
+    <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(128,128,128,0.5);
+      display: none;
+      z-index: 99;
+    }
+
+    .form-popup {
+      background-color: #ffffff;
+      width: 420px;
+      padding: 20px 0px;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 40%;
+      font-family: "Poppins",sans-serif;
+      border: 3px solid #f1f1f1;
+    }
+
+    .form-container {
+      max-width: 300px;
+      margin: 0px auto;
+      text-align: center;
+      background-color: white;
+    }
+    </style>
+
+<!--    condition for triggering the form-->
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+
+<!--    sidebar format-->
+    <style>
+    .sidenav {
+      width: 180px;
+      position: absolute;
+      z-index: 1;
+      background: #eee;
+      overflow-x: hidden;
+      padding: 8px 0;
+    }
+
+    .sidenav a {
+      line-height: 2em;
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: Times New Roman;
+      color: #2196F3;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #064579;
+    }
+
+    .main {
+      margin-left: 180px; /* Same width as the sidebar + left position in px */
+      font-size: 15px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
+
+    <!--initialize table form-->
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+</head>
+
+<body>
+    <div class="margin">
+        <!--title line with login and register-->
+        <br>
+        <h1 style="font-family:Times New Roman; font-size:35px"><div style="float: left">Air Ticket Reservation System</div></h1>
+        {% if username %}
+            <div class="dropdown">
+                <button class="dropbtn">Hi, {{username}}
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="http://127.0.0.1:5000/action_center_my_flights">Action Center</a>
+                  <a style="cursor: pointer" onclick="openForm()">Logout</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="dropdown_1">
+                <div class="dropbtn_1">
+                    <div style="float: right"><a href="http://127.0.0.1:5000/register_customer">Register</a></div>
+                    <div style="float: right">&nbsp|&nbsp</div>
+                    <div style="float: right"><a href="http://127.0.0.1:5000/login">Login</a></div>
+                </div>
+                <br>
+            </div>
+        {% endif %}
+        <div style="clear: both;"></div>
+        <br>
+
+        <ul>
+          <li style="font-family: sans-serif"><a href="http://127.0.0.1:5000/">Home</a></li>
+          <li style="font-family: sans-serif"><a href="#news">News</a></li>
+          <li style="font-family: sans-serif"><a href="#contact">Contact</a></li>
+          <li style="float:right; font-family: sans-serif"><a href="#about">About</a></li>
+        </ul>
+
+        <div class="overlay" id="myForm">
+            <div class="form-popup">
+              <form action="/logout" class="form-container">
+              <p>Goodbye!</p>
+              <button type="submit" class="btn cancel" onclick="closeForm()">Continue</button>
+              </form>
+            </div>
+        </div>
+
+        {% if identification == "Booking agent" %}
+            <div class="sidenav">
+              <a href="http://127.0.0.1:5000/action_center_my_flights">View My Flights</a>
+              <a href="http://127.0.0.1:5000/action_center_view_my_commission">View My Commission</a>
+              <a href="http://127.0.0.1:5000/action_center_view_top_customers">View Top Customers</a>
+            </div>
+
+            <div class="main">
+                <canvas id="myChart" style="width:100%; max-width:700px; margin-left: 100px;"></canvas>
+                <canvas id="myChart_1" style="width:100%; max-width:700px; margin-left: 100px;"></canvas>
+            </div>
+
+            <script>
+                var xValues = [];
+                var yValues = [];
+                var barColors = "orange";
+                var top_5_customer_email_by_ticket = {{ top_5_customer_email_by_ticket|tojson }};
+                var num_of_tickets = {{ num_of_tickets|tojson }};
+                var xValues_1 = [];
+                var yValues_1 = [];
+                var top_5_customer_email_by_commission = {{ top_5_customer_email_by_commission|tojson }};
+                var amount_of_commission = {{ amount_of_commission|tojson }};
+
+                for (var i = 0; i < num_of_tickets.length; i++) {
+                    xValues.push(top_5_customer_email_by_ticket[i]);
+                    yValues.push(num_of_tickets[i]);
+                    xValues_1.push(top_5_customer_email_by_commission[i]);
+                    yValues_1.push(amount_of_commission[i]);
+                }
+
+                new Chart("myChart", {
+                  type: "bar",
+                  data: {
+                    labels: xValues,
+                    datasets: [{
+                      backgroundColor: barColors,
+                      data: yValues
+                    }]
+                  },
+                  options: {
+                    title: {
+                      fontSize: 16,
+                      text: 'Top 5 Customers Based on Number of Tickets in the Past 6 Months',
+                      display: true
+                    },
+                    legend: {display: false},
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        },
+                        scaleLabel:{
+                          display: true,
+                          labelString: 'Number of Tickets',
+                        }
+                      }],
+                      xAxes: [{
+                        scaleLabel:{
+                          display: true,
+                          labelString: 'Customer Email',
+                        }
+                      }],
+                    }
+                  }
+                });
+
+                new Chart("myChart_1", {
+                  type: "bar",
+                  data: {
+                    labels: xValues_1,
+                    datasets: [{
+                      backgroundColor: barColors,
+                      data: yValues_1
+                    }]
+                  },
+                  options: {
+                    title: {
+                      fontSize: 16,
+                      text: 'Top 5 Customers Based on Amount of Commission in the Past Year',
+                      display: true
+                    },
+                    legend: {display: false},
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        },
+                        scaleLabel:{
+                          display: true,
+                          labelString: 'Amount of Commission',
+                        }
+                      }],
+                      xAxes: [{
+                        scaleLabel:{
+                          display: true,
+                          labelString: 'Customer Email',
+                        }
+                      }],
+                    }
+                  }
+                });
+            </script>
+
+        {% else %}
+            <div>
+                <h1>No permission</h1>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Ticket Reservation System|Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--setting for the margin-->
+    <style>
+    .margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 150px;
+    margin-left: 150px;
+    }
+    </style>
+
+    <!--format for the title line-->
+    <style>
+    .myDiv {
+    background-color: while;
+    text-align: center;
+    }
+    </style>
+
+    <!--    format for navigation bar-->
+    <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+    </style>
+
+    <!--    format for dropdown box-->
+    <style>
+    .dropdown {
+      float: right;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: Times New Roman;
+      margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: white;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    </style>
+
+    <!--    format for login/register link-->
+    <style>
+    .dropdown_1 {
+      float: right;
+      overflow: hidden;
+    }
+
+    .dropdown_1 .dropbtn_1 {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: Times New Roman;
+      margin: 0;
+    }
+    </style>
+
+<!--    center search format-->
+    <style>
+    .center-box{
+	  text-align: center;
+	  margin-top: 100px;
+      margin-bottom: 40px;
+      font-size: 20px;
+	}
+	</style>
+
+    <!--    style for pop-up form and content in the form-->
+    <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(128,128,128,0.5);
+      display: none;
+    }
+
+    .form-popup {
+      background-color: #ffffff;
+      width: 420px;
+      padding: 20px 0px;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 40%;
+      font-family: "Poppins",sans-serif;
+      border: 3px solid #f1f1f1;
+    }
+
+    .form-container {
+      max-width: 300px;
+      margin: 0px auto;
+      text-align: center;
+      background-color: white;
+    }
+    </style>
+
+<!--    condition for triggering the form-->
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    </script>
+</head>
+
+<body>
+    <div class="margin">
+        <!--title line with login and register-->
+        <div class="myDiv">
+            <br>
+            <h1 style="font-family:Times New Roman; font-size:35px"><div style="float: left">Air Ticket Reservation System</div></h1>
+            {% if username %}
+                <div class="dropdown">
+                    <button class="dropbtn">Hi, {{username}}
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="http://127.0.0.1:5000/action_center_my_flights">Action Center</a>
+                      <a style="cursor: pointer" onclick="openForm()">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="dropdown_1">
+                    <div class="dropbtn_1">
+                        <div style="float: right"><a href="http://127.0.0.1:5000/register_customer">Register</a></div>
+                        <div style="float: right">&nbsp|&nbsp</div>
+                        <div style="float: right"><a href="http://127.0.0.1:5000/login">Login</a></div>
+                    </div>
+                    <br>
+                </div>
+            {% endif %}
+            <div style="clear: both;"></div>
+            <br>
+        </div>
+
+        <ul>
+          <li style="font-family: sans-serif"><a href="http://127.0.0.1:5000/">Home</a></li>
+          <li style="font-family: sans-serif"><a href="#news">News</a></li>
+          <li style="font-family: sans-serif"><a href="#contact">Contact</a></li>
+          <li style="float:right; font-family: sans-serif"><a href="#about">About</a></li>
+        </ul>
+
+        <div class="center-box">
+            <form action="/search_by_flight_number_result" method="post">
+
+                <br>
+                <label for="flight_number"><b>Flight Number</b></label>
+                <input type="tel" id="flight_number" name="flight_number" maxlength="10" required> &nbsp
+
+                <label for="departure_date"><b> Departure Date </b></label>
+                <input type="date" id="departure_date" name="departure_date" required> &nbsp
+
+                <label for="arrival_date"><b> Arrival Date (Optional) </b></label>
+                <input type="date" id="arrival_date" name="arrival_date"> &nbsp
+
+                <button type="submit">Search</button>
+
+            </form>
+        </div>
+
+        <div class="overlay" id="myForm">
+            <div class="form-popup">
+              <form action="/logout" class="form-container">
+              <p>Goodbye!</p>
+              <button type="submit" class="btn cancel" onclick="closeForm()">Continue</button>
+              </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Air Ticket Reservation System|Login</title>
+
+    <!--setting for the margin-->
+    <style>
+    .margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 150px;
+    margin-left: 150px;
+    }
+    </style>
+
+    <!--format for the title line-->
+    <style>
+    .myDiv {
+    background-color: while;
+    text-align: center;
+    }
+    </style>
+
+    <!--    format for navigation bar-->
+    <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+
+    li:last-child {
+      border-right: none;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
+    </style>
+
+<!--    format for login/register link-->
+    <style>
+    .dropdown_1 {
+      float: right;
+      overflow: hidden;
+    }
+
+    .dropdown_1 .dropbtn_1 {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: Times New Roman;
+      margin: 0;
+    }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    form {border: 3px solid #f1f1f1;}
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    img.avatar {
+      width: 40%;
+      border-radius: 50%;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+      .cancelbtn {
+         width: 100%;
+      }
+    }
+    </style>
+
+</head>
+<body>
+    <div class="margin">
+        <!--title line with login and register-->
+        <div class="myDiv">
+            <br>
+            <h1 style="font-family:Times New Roman; font-size:35px"><div style="float: left">Air Ticket Reservation System</div></h1>
+            <div class="dropdown_1">
+                <div class="dropbtn_1">
+                    <div style="float: right"><a href="http://127.0.0.1:5000/register_customer">Register</a></div>
+                    <div style="float: right">&nbsp|&nbsp</div>
+                    <div style="float: right"><a href="http://127.0.0.1:5000/login">Login</a></div>
+                </div>
+                <br>
+            </div>
+            <div style="clear: both;"></div>
+            <br>
+        </div>
+
+        <ul>
+          <li style="font-family: sans-serif"><a href="http://127.0.0.1:5000/">Home</a></li>
+          <li style="font-family: sans-serif"><a href="#news">News</a></li>
+          <li style="font-family: sans-serif"><a href="#contact">Contact</a></li>
+          <li style="float:right; font-family: sans-serif"><a href="#about">About</a></li>
+        </ul>
+
+        <form action="/loginAuth" method="post">
+
+          <div class="container">
+
+            <label><b id="username/email"></b></label>
+            <script>
+            document.getElementById("username/email").innerHTML = 'Email';
+            </script>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <p></p>
+            Login as:
+            <input type="radio" name="identification" checked value="Customer" onclick="displayRadioValue()">Customer
+            &nbsp
+            <input type="radio" name="identification" value="Booking agent" onclick="displayRadioValue()">Booking agent
+            &nbsp
+            <input type="radio" name="identification" value="Airline Staff" onclick="displayRadioValue()">Airline Staff
+            <p></p>
+
+            <script>
+            function displayRadioValue() {
+                var ele = document.getElementsByName('identification');
+                for (var i=0; i<ele.length; i++){
+                    if (ele[i].checked){
+                        if (ele[i].value == "Customer" || ele[i].value == "Booking agent"){
+                            document.getElementById("username/email").innerHTML = "Email";
+                        }
+                        else {
+                            document.getElementById("username/email").innerHTML = "Username";
+                        }
+                    }
+                }
+            }
+            </script>
+
+            {% if error %}
+		        <p style="color: red" class="error"><strong>Error:</strong> {{error}}</p>
+	        {% endif %}
+
+            <button type="submit">Login</button>
+          </div>
+
+          <div class="container" style="background-color:#f1f1f1">
+            <a href="http://127.0.0.1:5000/">
+              <button type="button" class="cancelbtn">Cancel</button>
+            </a>
+          </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
